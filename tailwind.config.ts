@@ -19,11 +19,16 @@ export default {
           "0%": { transform: "translateY(100%)" },
           "100%": { transform: "translateY(0)" },
         },
+        "slide-bottom": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         "slide-left": "slide-left 0.5s ease-in-out",
         "slide-right": "slide-right 0.5s ease-in-out",
         "slide-top": "slide-top 0.5s ease-in-out",
+        "slide-bottom": "slide-bottom 0.5s ease-in-out",
       },
       colors: {
         black: "#000",
@@ -47,6 +52,15 @@ export default {
         orange: {
           50: "#FFE6CC",
           500: "#FF8400",
+        },
+        gray: {
+          20: "#D5D5D5",
+          40: "#AAAAAB",
+          60: "#7F8080",
+          700: "#2A2B2C",
+        },
+        aqua: {
+          300: "#25E2CC",
         },
       },
     },
