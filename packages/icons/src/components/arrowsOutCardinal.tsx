@@ -2,7 +2,7 @@ import React from "react";
 
 type GenericIconProps = React.ComponentPropsWithoutRef<"svg">;
 
-export const ArrowsOuCardinal = ({ ...props }: GenericIconProps) => (
+export const ArrowsOutCardinal = ({ ...props }: GenericIconProps) => (
     <svg
         width={14}
         height={15}
