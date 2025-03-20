@@ -55,155 +55,160 @@ export const Icons = () => {
     }, [searchIcon]);
 
     return (
-        <div className="overflow-hidden space-y-5">
-            <main>
-                <section className="space-y-10 w-full max-w-7xl mx-auto">
-                    <h5 className="text-2xl font-semibold text-center">
-                        List Icon design System Concentrix
-                    </h5>
-                    <div className="flex gap-3">
-                        <label
-                            className={cx([
-                                "border-transparent rounded-sm cursor-pointer",
-                                "px-3 py-1 block w-full max-w-24",
-                                "text-sm font-medium text-center",
-                                'flex items-center justify-center'
-                            ])}
-                            style={{
-                                backgroundColor: icons.colorDefault,
-                                color: getContrastColor(icons.colorDefault),
-                            }}
-                        >
-                            <input
-                                type="color"
-                                hidden
-                                onChange={(e) =>
-                                    setIcons((prev) => {
-                                        return {
-                                            ...prev,
-                                            colorDefault: e.target.value,
-                                        };
-                                    })
-                                }
-                            />
-                            <span>{icons.colorDefault}</span>
-                        </label>
+        <div className="space-y-5 relative mb-5">
+            <div
+                className={cx([
+                    "flex flex-col gap-10",
+                    "px-3 pb-5 shadow-md rounded bg-white",
+                    "sticky top-0 z-10",
+                    'transition-all ease-in-out duration-300'
+                ])}
+            >
+                <h5 className="text-2xl font-semibold text-center">
+                    List Icon design System Concentrix
+                </h5>
+                <div className="flex gap-3">
+                    <label
+                        className={cx([
+                            "border-transparent rounded-sm cursor-pointer",
+                            "px-3 py-1 block w-full max-w-24",
+                            "text-sm font-medium text-center",
+                            "flex items-center justify-center",
+                        ])}
+                        style={{
+                            backgroundColor: icons.colorDefault,
+                            color: getContrastColor(icons.colorDefault),
+                        }}
+                    >
                         <input
-                            type="text"
-                            list="titleIcon"
-                            onChange={(e) => setSearchIcon(e.target.value)}
-                            className={cx([
-                                "border rounded-sm",
-                                "px-3 py-1",
-                                "outline-none appearance-none",
-                                "text-sm",
-                            ])}
-                            placeholder="Search"
+                            type="color"
+                            hidden
+                            onChange={(e) =>
+                                setIcons((prev) => {
+                                    return {
+                                        ...prev,
+                                        colorDefault: e.target.value,
+                                    };
+                                })
+                            }
                         />
-                        <datalist
-                            id="titleIcon"
-                            className="appearance-none bg-red-500"
-                        >
-                            {listTitleIcon.map((el) => (
-                                <option key={el}>{el}</option>
-                            ))}
-                        </datalist>
-                        <div className="flex gap-2 items-center">
-                            <p>{icons.sizeDefault}px</p>
-                            <input
+                        <span>{icons.colorDefault}</span>
+                    </label>
+                    <input
+                        type="text"
+                        list="titleIcon"
+                        onChange={(e) => setSearchIcon(e.target.value)}
+                        className={cx([
+                            "border rounded-sm",
+                            "px-3 py-1",
+                            "outline-none appearance-none",
+                            "text-sm",
+                        ])}
+                        placeholder="Search"
+                    />
+                    <datalist
+                        id="titleIcon"
+                        className="appearance-none bg-red-500"
+                    >
+                        {listTitleIcon.map((el) => (
+                            <option key={el}>{el}</option>
+                        ))}
+                    </datalist>
+                    <div className="flex gap-2 items-center">
+                        <p>{icons.sizeDefault}px</p>
+                        <input
                             className="cursor-pointer bg-black"
-                                type="range"
-                                defaultValue={icons.sizeDefault}                                
-                                max={96}
-                                min={16}
-                                step={4}
-                                onChange={(e) =>
-                                    setIcons((prev) => {
-                                        return {
-                                            ...prev,
-                                            sizeDefault: Number(e.target.value),
-                                        };
-                                    })
-                                }
-                            />
-                        </div>
+                            type="range"
+                            defaultValue={icons.sizeDefault}
+                            max={96}
+                            min={16}
+                            step={4}
+                            onChange={(e) =>
+                                setIcons((prev) => {
+                                    return {
+                                        ...prev,
+                                        sizeDefault: Number(e.target.value),
+                                    };
+                                })
+                            }
+                        />
                     </div>
-                    <div>
-                        {filteredIcon.map(({ components, title }, index) => {
-                            return (
-                                <div
-                                    key={title + index}
-                                    className="flex flex-col items-center space-y-5"
-                                >
-                                    <h6 className="capitalize font-semibold">
-                                        {title}
-                                    </h6>
-                                    <ul className="flex  items-center justify-between flex-wrap w-full">
-                                        {components.map(({ item, name }) => (
-                                            <li
-                                                key={name}
-                                                className="w-full max-w-32  "
+                </div>
+            </div>
+            <main className="space-y-10 w-full max-w-7xl mx-auto overflow-hidden relative">
+                <div>
+                    {filteredIcon.map(({ components, title }, index) => {
+                        return (
+                            <div
+                                key={title + index}
+                                className="flex flex-col items-center space-y-5"
+                            >
+                                <h6 className="capitalize font-semibold">
+                                    {title}
+                                </h6>
+                                <ul className="flex  items-center justify-between flex-wrap w-full">
+                                    {components.map(({ item, name }) => (
+                                        <li
+                                            key={name}
+                                            className="w-full max-w-32  "
+                                        >
+                                            <button
+                                                className={cx([
+                                                    "flex flex-col items-center justify-center gap-3",
+                                                    "w-full aspect-square p-2",
+                                                    "rounded-md cursor-pointer",
+                                                    "ease-in duration-200",
+                                                    "hover:bg-gray-100",
+                                                ])}
+                                                onClick={() => {
+                                                    setModalIcon({
+                                                        icon: item,
+                                                        open: true,
+                                                        name,
+                                                    });
+                                                    setTimeout(() => {
+                                                        document
+                                                            .getElementById(
+                                                                "modal-icon-download"
+                                                            )
+                                                            ?.scrollIntoView({
+                                                                behavior:
+                                                                    "smooth",
+                                                                block: "center",
+                                                                inline: "end",
+                                                            });
+                                                    }, 100);
+                                                }}
                                             >
-                                                <button
-                                                    className={cx([
-                                                        "flex flex-col items-center justify-center gap-3",
-                                                        "w-full aspect-square p-2",
-                                                        "rounded-md cursor-pointer",
-                                                        "ease-in duration-200",
-                                                        "hover:bg-gray-100",
-                                                    ])}
-                                                    onClick={() => {
-                                                        setModalIcon({
-                                                            icon: item,
-                                                            open: true,
-                                                            name,
-                                                        });
-                                                        setTimeout(() => {
-                                                            document
-                                                                .getElementById(
-                                                                    "modal-icon-download"
-                                                                )
-                                                                ?.scrollIntoView(
-                                                                    {
-                                                                        behavior:
-                                                                            "smooth",
-                                                                        block: "center",
-                                                                        inline: "end",
-                                                                    }
-                                                                );
-                                                        }, 100);
+                                                <Slot
+                                                    style={{
+                                                        color: icons.colorDefault,
+                                                        width: icons.sizeDefault,
+                                                        height: icons.sizeDefault,
                                                     }}
+                                                    className="transition-all"
                                                 >
-                                                    <Slot                                                        
-                                                        style={{
-                                                            color: icons.colorDefault,
-                                                            width:icons.sizeDefault,
-                                                            height:icons.sizeDefault
-                                                        }}
-                                                        className="transition-all"
-                                                    >
-                                                        {item}
-                                                    </Slot>
-                                                    <p className="text-xs font-medium text-center">
-                                                        {name}
-                                                    </p>
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </section>
+                                                    {item}
+                                                </Slot>
+                                                <p className="text-xs font-medium text-center">
+                                                    {name}
+                                                </p>
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </div>
+                <ModalDownload
+                    isOpen={modalIcon?.open}
+                    name={modalIcon?.name}
+                    icon={modalIcon.icon}
+                    color={icons.colorDefault}
+                    size={icons.sizeDefault}
+                />
             </main>
-            <ModalDownload
-                isOpen={modalIcon?.open}
-                name={modalIcon?.name}
-                icon={modalIcon.icon}
-                color={icons.colorDefault}
-                size={icons.sizeDefault}
-            />
         </div>
     );
 };
