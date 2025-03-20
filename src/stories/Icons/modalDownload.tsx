@@ -8,7 +8,7 @@ type ModalDownloadProps = {
     name: string;
     icon: ReactNode;
     color: string;
-    size:number
+    size: number;
 };
 
 export const ModalDownload = ({
@@ -16,7 +16,7 @@ export const ModalDownload = ({
     name,
     icon,
     color,
-    size
+    size,
 }: ModalDownloadProps) => {
     return (
         <div
@@ -27,7 +27,7 @@ export const ModalDownload = ({
                 "w-0 pointer-events-none",
                 "ease-in-out duration-300",
                 "absolute bottom-full left-full",
-                "data-[hidden=true]:w-full ",
+                "data-[hidden=true]:w-full data-[hidden=true]:h-auto data-[hidden=true]:max-w-2xl data-[hidden=true]:mx-auto",
                 "data-[hidden=true]:left-auto data-[hidden=true]:bottom-auto ",
                 "data-[hidden=true]:relative data-[hidden=true]:pointer-events-auto",
             ])}

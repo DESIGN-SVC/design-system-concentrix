@@ -5,6 +5,15 @@ const meta = {
   title: 'Pages',
   component: Icons,
   tags: ['!autodocs'],
+  parameters: {
+    controls: {
+      disable: true,
+    },
+    actions: {
+      disable: true,
+    },
+
+  },
 
 } satisfies Meta<typeof Icons>;
 
