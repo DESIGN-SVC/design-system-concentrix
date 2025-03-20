@@ -58,8 +58,8 @@ export const Icons = () => {
         <div className="space-y-5 relative mb-5">
             <div
                 className={cx([
-                    "flex flex-col gap-10",
-                    "px-3 pb-5 shadow-md rounded bg-white",
+                    "flex flex-col gap-10 =",
+                    "px-3 pb-5 w-full max-w-7xl shadow-md mx-auto rounded bg-white",
                     "sticky top-0 z-10",
                     'transition-all ease-in-out duration-300'
                 ])}
@@ -67,13 +67,13 @@ export const Icons = () => {
                 <h5 className="text-2xl font-semibold text-center">
                     List Icon design System Concentrix
                 </h5>
-                <div className="flex gap-3">
+                <div className="flex gap-3 flex-wrap">
                     <label
                         className={cx([
                             "border-transparent rounded-sm cursor-pointer",
                             "px-3 py-1 block w-full max-w-24",
                             "text-sm font-medium text-center",
-                            "flex items-center justify-center",
+                            "flex items-center justify-center flex-wrap",
                         ])}
                         style={{
                             backgroundColor: icons.colorDefault,
@@ -114,7 +114,7 @@ export const Icons = () => {
                             <option key={el}>{el}</option>
                         ))}
                     </datalist>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center flex-wrap">
                         <p>{icons.sizeDefault}px</p>
                         <input
                             className="cursor-pointer bg-black"
@@ -136,7 +136,7 @@ export const Icons = () => {
                 </div>
             </div>
             <main className="space-y-10 w-full max-w-7xl mx-auto overflow-hidden relative">
-                <div>
+                <div className="space-y-3 divide-gray-100 divide-y">
                     {filteredIcon.map(({ components, title }, index) => {
                         return (
                             <div

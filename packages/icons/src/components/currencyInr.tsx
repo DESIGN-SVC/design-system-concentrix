@@ -2,7 +2,7 @@ import React from "react";
 
 type GenericIconProps = React.ComponentPropsWithoutRef<"svg">;
 
-export const CurrencyInd = ({ ...props }: GenericIconProps) => (
+export const CurrencyInr = ({ ...props }: GenericIconProps) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={12}
