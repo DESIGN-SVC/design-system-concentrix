@@ -3117,22 +3117,89 @@ export const list = [
             {
                 item: <Icon.Help />,
                 name: "Help",
-                tags: ["information", "help", "support", "questions", "system", "question"]
+                tags: [
+                    "information",
+                    "help",
+                    "support",
+                    "questions",
+                    "system",
+                    "question",
+                ],
             },
             {
                 item: <Icon.Hexagon />,
                 name: "hexagon",
-                tags: ["shapes", "polygons", "design", "hexagon"]
+                tags: ["shapes", "polygons", "design", "hexagon"],
             },
             {
                 item: <Icon.Hourglass />,
                 name: "hourglass",
-                tags: ["times", "timer", "alarms", "clock", "schedule", "events", "waiting", "progress", "system", "objects", "hourglass"]
+                tags: [
+                    "times",
+                    "timer",
+                    "alarms",
+                    "clock",
+                    "schedule",
+                    "events",
+                    "waiting",
+                    "progress",
+                    "system",
+                    "objects",
+                    "hourglass",
+                ],
             },
             {
                 item: <Icon.House />,
                 name: "house",
-                tags: ["homes", "buildings", "places", "locations", "maps & travel", "system", "house"]
+                tags: [
+                    "homes",
+                    "buildings",
+                    "places",
+                    "locations",
+                    "maps & travel",
+                    "system",
+                    "house",
+                ],
+            },
+        ],
+    },
+    {
+        title: "I",
+        components: [
+            {
+                item: <Icon.IdentificationCard />,
+                name: "identification-card",
+                tags: [
+                    "license",
+                    "badge",
+                    "credentials",
+                    "nametag",
+                    "user",
+                    "verification",
+                    "people",
+                    "identification",
+                    "card",
+                ],
+            },
+            {
+                item: <Icon.Image />,
+                name: "image",
+                tags: ["pictures", "photographs", "photography", "wallpapers", "gallery", "landscape", "media", "system", "image"]
+            },
+            {
+                item: <Icon.Info />,
+                name: "info",
+                tags: ["information", "help", "support", "system", "info"]
+            },
+            {
+                item: <Icon.InstagramLogo />,
+                name: "instagram-logo",
+                tags: ["logos", "social media", "photography", "camera", "brands", "communications", "instagram", "logo"]
+            },
+            {
+                item: <Icon.Invoice />,
+                name: "invoice",
+                tags: ["receipt", "expense", "bill", "commerce", "finances", "office", "invoice"]
             },
         ],
     },
