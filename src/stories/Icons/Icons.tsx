@@ -12,7 +12,7 @@ type ModalIcon = {
 
 export const Icons = () => {
     const [icons, setIcons] = useState({
-        colorDefault: "#000000",
+        colorDefault: "#003D5B",
         sizeDefault: 40,
     });
     const [searchIcon, setSearchIcon] = useState("");
@@ -83,6 +83,7 @@ export const Icons = () => {
                         <input
                             type="color"
                             hidden
+                            value={icons.colorDefault}
                             onChange={(e) =>
                                 setIcons((prev) => {
                                     return {
@@ -108,7 +109,7 @@ export const Icons = () => {
                     />
                     <datalist
                         id="titleIcon"
-                        className="appearance-none bg-red-500"
+                        className="appearance-none"
                     >
                         {listTitleIcon.map((el) => (
                             <option key={el}>{el}</option>
@@ -158,7 +159,7 @@ export const Icons = () => {
                                                     "w-full aspect-square p-2",
                                                     "rounded-md cursor-pointer",
                                                     "ease-in duration-200",
-                                                    "hover:bg-gray-100",
+                                                    "hover:bg-[#E9FCFA]",
                                                 ])}
                                                 onClick={() => {
                                                     setModalIcon({
