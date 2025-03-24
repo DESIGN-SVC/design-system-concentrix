@@ -2,7 +2,7 @@ import React from "react";
 
 type GenericIconProps = React.ComponentPropsWithoutRef<"svg">;
 
-export const EnvelopeSimple = ({ ...props }: GenericIconProps) => (
+export const EnvelopeOpen = ({ ...props }: GenericIconProps) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={16}
