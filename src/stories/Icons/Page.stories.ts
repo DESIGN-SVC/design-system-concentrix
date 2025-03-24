@@ -12,6 +12,7 @@ const meta = {
     actions: {
       disable: true,
     },
+    options: { showPanel: false }
 
   },
 
