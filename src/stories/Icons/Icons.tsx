@@ -46,7 +46,7 @@ export const Icons = () => {
                     return (
                         name.toLowerCase().includes(searchLower) ||
                         tags.some((tag) =>
-                            (tag as string).toLowerCase().includes(searchLower)
+                            tag.toString().toLowerCase().includes(searchLower)
                         )
                     );
                 }),
