@@ -4371,4 +4371,51 @@ export const list = [
             },
         ],
     },
+    {
+        title: "Q",
+        components: [
+            {
+                item: <Icon.Queue />,
+                name: "queue",
+                tags: [
+                    "music",
+                    "audio",
+                    "playlist",
+                    "media",
+                    "system",
+                    "queue",
+                ],
+            },
+            {
+                item: <Icon.Quote />,
+                name: "quotes",
+                tags: [
+                    "quoations",
+                    "quotation marks",
+                    "double-quotes",
+                    "writing",
+                    "books",
+                    "communications",
+                    "editor",
+                    "media",
+                    "quotes",
+                ],
+            },
+            {
+                item: <Icon.QuoteSquare />,
+                name: "quotes-square",
+                tags: [
+                    "quoations",
+                    "quotation marks",
+                    "double-quotes",
+                    "writing",
+                    "books",
+                    "communications",
+                    "editor",
+                    "media",
+                    "quotes",
+                ],
+            },
+        ],
+    },
 ] as const;

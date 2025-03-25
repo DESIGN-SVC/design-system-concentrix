@@ -2,7 +2,7 @@ import React from "react";
 
 type GenericIconProps = React.ComponentPropsWithoutRef<"svg">;
 
-export const QuoteSimple = ({ ...props }: GenericIconProps) => (
+export const QuoteSquare = ({ ...props }: GenericIconProps) => (
     <svg
         width={14}
         height={11}
