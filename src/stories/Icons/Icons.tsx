@@ -142,9 +142,9 @@ export const Icons = () => {
                         return (
                             <div
                                 key={title + index}
-                                className="flex flex-col items-center space-y-5"
+                                className="flex flex-col items-center space-y-5 "
                             >
-                                <h6 className="capitalize font-semibold">
+                                <h6 className="capitalize font-semibold text-[#007380]">
                                     {title}
                                 </h6>
                                 <ul className="flex  items-center justify-between flex-wrap w-full">
