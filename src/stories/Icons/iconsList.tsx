@@ -5786,4 +5786,25 @@ export const list = [
             },
         ],
     },
+    {
+        title: "Y",
+        components: [
+            {
+                item: <Icon.YoutubeLogo />,
+                name: "youtube-logo",
+                tags: [
+                    "logos",
+                    "google",
+                    "videos",
+                    "movies",
+                    "social media",
+                    "brands",
+                    "communications",
+                    "media",
+                    "youtube",
+                    "logo",
+                ],
+            },
+        ],
+    },
 ] as const;
