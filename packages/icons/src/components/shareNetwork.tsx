@@ -2,7 +2,7 @@ import React from "react";
 
 type GenericIconProps = React.ComponentPropsWithoutRef<"svg">;
 
-export const ShareWork = ({ ...props }: GenericIconProps) => (
+export const ShareNetwork = ({ ...props }: GenericIconProps) => (
     <svg
         width={16}
         height={17}
