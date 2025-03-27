@@ -5762,4 +5762,28 @@ export const list = [
             },
         ],
     },
+    {
+        title: "X",
+        components: [
+            {
+                item: <Icon.X />,
+                name: "x",
+                tags: [
+                    "closed",
+                    "cancelled",
+                    "dismissed",
+                    "times",
+                    "multiply",
+                    "mulitplication",
+                    "product",
+                    "mathematics",
+                    "arithmetic",
+                    "calculator",
+                    "technology & development",
+                    "finances",
+                    "system",
+                ],
+            },
+        ],
+    },
 ] as const;
