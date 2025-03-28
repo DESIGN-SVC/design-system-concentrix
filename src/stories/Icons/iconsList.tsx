@@ -1,6 +1,13 @@
 import * as Icon from "../../../packages/icons/src";
 
-export const list = [
+export const list: {
+    title: string;
+    components: {
+        item: JSX.Element;
+        name: string;
+        tags: string[];
+    }[];
+}[] = [
     {
         title: "a",
         components: [
@@ -3377,7 +3384,6 @@ export const list = [
                     "hamburger menu",
                     "overflow menu",
                     "sidebar",
-                    3,
                     "ul",
                     "ol",
                     "unordered list",
