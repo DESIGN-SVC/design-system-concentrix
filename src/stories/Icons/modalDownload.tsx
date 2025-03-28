@@ -9,6 +9,8 @@ type ModalDownloadProps = {
     icon: ReactNode;
     color: string;
     size: number;
+    tags: string[];
+    onTag: ({ tag }: { tag: string }) => void;
 };
 
 export const ModalDownload = ({
@@ -17,6 +19,8 @@ export const ModalDownload = ({
     icon,
     color,
     size,
+    tags,
+    onTag,
 }: ModalDownloadProps) => {
     return (
         <div
@@ -32,7 +36,7 @@ export const ModalDownload = ({
                 "data-[hidden=true]:relative data-[hidden=true]:pointer-events-auto",
             ])}
         >
-            <h5 className="text-lg font-medium text-center w-full py-2">
+            <h5 className="text-lg font-medium text-center w-full py-2 text-[#003D5B]">
                 {name}
             </h5>
             <div
@@ -56,7 +60,7 @@ export const ModalDownload = ({
                     <h6 className="text-xs font-medium border-b border-gray-200 pb-1">
                         Download
                     </h6>
-                    <div className="flex gap-3 items-center">
+                    <div className="flex gap-3 items-center py-2">
                         <ButtonDownload
                             onClick={() =>
                                 downloadSVG({
@@ -83,6 +87,26 @@ export const ModalDownload = ({
                         >
                             png
                         </ButtonDownload>
+                    </div>
+                    <h6 className="text-xs font-medium border-b border-gray-200 pb-1">
+                        Tags
+                    </h6>
+                    <div className="flex flex-wrap  gap-3 items-center py-2">
+                        {tags.map((el) => (
+                            <button
+                                key={el}
+                                onClick={() => onTag({ tag: el })}
+                                className={cx([
+                                    "text-xs text-white",
+                                    "bg-[#003D5B] rounded-lg cursor-pointer",
+                                    "px-2 py-1",
+                                    "duration-300 ease-in-out",
+                                    "hover:bg-[#007380]",
+                                ])}
+                            >
+                                {el}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>

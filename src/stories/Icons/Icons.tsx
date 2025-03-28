@@ -1,13 +1,14 @@
 import { Slot } from "@radix-ui/react-slot";
 import { list } from "./iconsList";
 import { cx } from "cva";
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useMemo, useRef, useState } from "react";
 import { ModalDownload } from "./modalDownload";
 
 type ModalIcon = {
     icon?: ReactNode;
     open: boolean;
     name: string;
+    tags: string[];
 };
 
 export const Icons = () => {
@@ -19,7 +20,9 @@ export const Icons = () => {
     const [modalIcon, setModalIcon] = useState<ModalIcon>({
         name: "",
         open: false,
+        tags: [],
     });
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const getContrastColor = (hex: string) => {
         const r = parseInt(hex.slice(1, 3), 16);
@@ -55,7 +58,7 @@ export const Icons = () => {
     }, [searchIcon]);
 
     return (
-        <div className="space-y-5 relative mb-5">
+        <div className="space-y-5 relative mb-5" id="content-icons">
             <div
                 className={cx([
                     "flex flex-col gap-10 =",
@@ -96,6 +99,7 @@ export const Icons = () => {
                         <span>{icons.colorDefault}</span>
                     </label>
                     <input
+                        ref={searchInputRef}
                         type="text"
                         list="titleIcon"
                         onChange={(e) => setSearchIcon(e.target.value)}
@@ -145,7 +149,7 @@ export const Icons = () => {
                                     {title}
                                 </h6>
                                 <ul className="flex  items-center justify-between flex-wrap w-full">
-                                    {components.map(({ item, name }) => (
+                                    {components.map(({ item, name, tags }) => (
                                         <li
                                             key={name}
                                             className="w-full max-w-32  "
@@ -163,6 +167,7 @@ export const Icons = () => {
                                                         icon: item,
                                                         open: true,
                                                         name,
+                                                        tags,
                                                     });
                                                     setTimeout(() => {
                                                         document
@@ -200,11 +205,24 @@ export const Icons = () => {
                     })}
                 </div>
                 <ModalDownload
+                    onTag={({ tag }) => {
+                        if (searchInputRef.current) {
+                            searchInputRef.current.value = tag;
+                            setSearchIcon(tag);
+                            setTimeout(() => {
+                                document
+                                    .getElementById("content-icons")
+                                    ?.scrollIntoView({
+                                        behavior: "smooth",
+                                    });
+                            }, 100);
+                        }
+                    }}
                     isOpen={modalIcon?.open}
-                    name={modalIcon?.name}
                     icon={modalIcon.icon}
                     color={icons.colorDefault}
                     size={icons.sizeDefault}
+                    {...modalIcon}
                 />
             </main>
         </div>
