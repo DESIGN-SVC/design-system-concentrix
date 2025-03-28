@@ -3,4 +3,20 @@
 
 @theme {
     --default-font-family: "Montserrat", serif;
+
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-transparent: transparent;
+    --color-current: "currentColor";
+    --color-inherit: "inherit";
+
+    --color-primary: #003d5b;
+    --color-secondary: #007380;
+
+    --color-st-10: #e9fcfa;
+    --color-st-20: #d3f9f5;
+    --color-st-40: #a8f3eb;
+    --color-st-60: #7ceee0;
+    --color-st-80: #51e8d6;
+    --color-st-100: #25e2cc;
 }
