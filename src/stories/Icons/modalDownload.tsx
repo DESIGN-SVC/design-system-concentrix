@@ -1,7 +1,8 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cx } from "cva";
 import { ComponentProps, ReactNode } from "react";
-import ReactDOMServer from "react-dom/server";
+
+import { downloadPNG, downloadSVG } from "./utils";
 
 type ModalDownloadProps = {
     isOpen?: boolean;
@@ -98,10 +99,10 @@ export const ModalDownload = ({
                                 onClick={() => onTag({ tag: el })}
                                 className={cx([
                                     "text-xs text-white",
-                                    "bg-[#003D5B] rounded-lg cursor-pointer",
+                                    "bg-primary rounded-lg cursor-pointer",
                                     "px-2 py-1",
                                     "duration-300 ease-in-out",
-                                    "hover:bg-[#007380]",
+                                    "hover:bg-secondary",
                                 ])}
                             >
                                 {el}
@@ -125,77 +126,6 @@ const ButtonDownload = ({ ...props }: ComponentProps<"button">) => (
         {...props}
     />
 );
-type Download = {
-    name: string;
-    Component: ReactNode;
-    color: string;
-    width: number;
-    height: number;
-};
 
-const downloadSVG = ({ Component, color, name, width, height }: Download) => {
-    let svgString = ReactDOMServer.renderToStaticMarkup(Component);
 
-    svgString = svgString.replace(/currentColor/g, color);
-    svgString = svgString.replace(/\s(width|height)="[\d.]+"/g, "");
 
-    svgString = svgString.replace(
-        /<svg([^>]*)>/,
-        `<svg$1 width="${width}" height="${height}">`
-    );
-    const blob = new Blob([svgString], { type: "image/svg+xml" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${name}.svg`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-};
-
-const downloadPNG = ({ Component, color, name, width, height }: Download) => {
-    let svgString = ReactDOMServer.renderToStaticMarkup(Component);
-
-    svgString = svgString.replace(/currentColor/g, color);
-
-    svgString = svgString.replace(/\s(width|height)="[\d.]+"/g, "");
-
-    svgString = svgString.replace(
-        /<svg([^>]*)>/,
-        `<svg$1 width="${width}" height="${height}">`
-    );
-
-    const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-
-    const img = new Image();
-    img.onload = () => {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-
-        if (ctx) {
-            ctx.clearRect(0, 0, width, height);
-            ctx.drawImage(img, 0, 0, width, height);
-
-            canvas.toBlob((blob) => {
-                if (blob) {
-                    const pngUrl = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = pngUrl;
-                    a.download = `${name}.png`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(pngUrl);
-                }
-            }, "image/png");
-        }
-
-        URL.revokeObjectURL(url);
-    };
-    img.src = url;
-};

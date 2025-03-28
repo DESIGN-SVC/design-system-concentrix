@@ -3,6 +3,7 @@ import { list } from "./iconsList";
 import { cx } from "cva";
 import { ReactNode, useMemo, useRef, useState } from "react";
 import { ModalDownload } from "./modalDownload";
+import { SearchIcons } from "./SearchIcons";
 
 type ModalIcon = {
     icon?: ReactNode;
@@ -24,13 +25,6 @@ export const Icons = () => {
     });
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    const getContrastColor = (hex: string) => {
-        const r = parseInt(hex.slice(1, 3), 16);
-        const g = parseInt(hex.slice(3, 5), 16);
-        const b = parseInt(hex.slice(5, 7), 16);
-        const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-        return luminance > 128 ? "#000000" : "#FFFFFF";
-    };
     const listTitleIcon = useMemo(
         () =>
             list.flatMap(({ components }) =>
@@ -57,86 +51,43 @@ export const Icons = () => {
             .filter(({ components }) => components.length > 0);
     }, [searchIcon]);
 
+    const handleClickIcon = ({ name, tags, icon }: Omit<ModalIcon, "open">) => {
+        setModalIcon({
+            icon,
+            open: true,
+            name,
+            tags,
+        });
+        setTimeout(() => {
+            document.getElementById("modal-icon-download")?.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "end",
+            });
+        }, 100);
+    };
+
+    const handleSearchTag = (tag: string) => {
+        if (searchInputRef.current) {
+            searchInputRef.current.value = tag;
+            setSearchIcon(tag);
+            setTimeout(() => {
+                document.getElementById("content-icons")?.scrollIntoView({
+                    behavior: "smooth",
+                });
+            }, 100);
+        }
+    };
+
     return (
         <div className="space-y-5 relative mb-5" id="content-icons">
-            <div
-                className={cx([
-                    "flex flex-col gap-10 =",
-                    "px-3 pb-5 w-full max-w-7xl shadow-md mx-auto rounded bg-white",
-                    "sticky top-0 z-10",
-                    "transition-all ease-in-out duration-300",
-                ])}
-            >
-                <h5 className="text-2xl font-semibold text-center">
-                    List Icon design System Concentrix
-                </h5>
-                <div className="flex gap-3 flex-wrap">
-                    <label
-                        className={cx([
-                            "border-transparent rounded-sm cursor-pointer",
-                            "px-3 py-1 block w-full max-w-24",
-                            "text-sm font-medium text-center",
-                            "flex items-center justify-center flex-wrap",
-                        ])}
-                        style={{
-                            backgroundColor: icons.colorDefault,
-                            color: getContrastColor(icons.colorDefault),
-                        }}
-                    >
-                        <input
-                            type="color"
-                            hidden
-                            value={icons.colorDefault}
-                            onChange={(e) =>
-                                setIcons((prev) => {
-                                    return {
-                                        ...prev,
-                                        colorDefault: e.target.value,
-                                    };
-                                })
-                            }
-                        />
-                        <span>{icons.colorDefault}</span>
-                    </label>
-                    <input
-                        ref={searchInputRef}
-                        type="text"
-                        list="titleIcon"
-                        onChange={(e) => setSearchIcon(e.target.value)}
-                        className={cx([
-                            "border rounded-sm",
-                            "px-3 py-1",
-                            "outline-none appearance-none",
-                            "text-sm",
-                        ])}
-                        placeholder="Search"
-                    />
-                    <datalist id="titleIcon" className="appearance-none">
-                        {listTitleIcon.map((el) => (
-                            <option key={el}>{el}</option>
-                        ))}
-                    </datalist>
-                    <div className="flex gap-2 items-center flex-wrap">
-                        <p>{icons.sizeDefault}px</p>
-                        <input
-                            className="cursor-pointer bg-black"
-                            type="range"
-                            defaultValue={icons.sizeDefault}
-                            max={96}
-                            min={16}
-                            step={4}
-                            onChange={(e) =>
-                                setIcons((prev) => {
-                                    return {
-                                        ...prev,
-                                        sizeDefault: Number(e.target.value),
-                                    };
-                                })
-                            }
-                        />
-                    </div>
-                </div>
-            </div>
+            <SearchIcons
+                icons={icons}
+                listTitleIcon={listTitleIcon}
+                searchInputRef={searchInputRef}
+                setIcons={setIcons}
+                setSearchIcon={setSearchIcon}
+            />
             <main className="space-y-10 w-full max-w-7xl mx-auto overflow-hidden relative">
                 <div className="space-y-3 divide-gray-100 divide-y">
                     {filteredIcon.map(({ components, title }, index) => {
@@ -145,7 +96,7 @@ export const Icons = () => {
                                 key={title + index}
                                 className="flex flex-col items-center space-y-5 "
                             >
-                                <h6 className="capitalize font-semibold text-[#007380]">
+                                <h6 className="capitalize font-semibold text-secondary">
                                     {title}
                                 </h6>
                                 <ul className="flex  items-center justify-between flex-wrap w-full">
@@ -160,28 +111,15 @@ export const Icons = () => {
                                                     "w-full aspect-square p-2",
                                                     "rounded-md cursor-pointer",
                                                     "ease-in duration-200",
-                                                    "hover:bg-[#E9FCFA]",
+                                                    "hover:bg-st-10",
                                                 ])}
-                                                onClick={() => {
-                                                    setModalIcon({
-                                                        icon: item,
-                                                        open: true,
+                                                onClick={() =>
+                                                    handleClickIcon({
                                                         name,
                                                         tags,
-                                                    });
-                                                    setTimeout(() => {
-                                                        document
-                                                            .getElementById(
-                                                                "modal-icon-download"
-                                                            )
-                                                            ?.scrollIntoView({
-                                                                behavior:
-                                                                    "smooth",
-                                                                block: "center",
-                                                                inline: "end",
-                                                            });
-                                                    }, 100);
-                                                }}
+                                                        icon: item,
+                                                    })
+                                                }
                                             >
                                                 <Slot
                                                     style={{
@@ -205,19 +143,7 @@ export const Icons = () => {
                     })}
                 </div>
                 <ModalDownload
-                    onTag={({ tag }) => {
-                        if (searchInputRef.current) {
-                            searchInputRef.current.value = tag;
-                            setSearchIcon(tag);
-                            setTimeout(() => {
-                                document
-                                    .getElementById("content-icons")
-                                    ?.scrollIntoView({
-                                        behavior: "smooth",
-                                    });
-                            }, 100);
-                        }
-                    }}
+                    onTag={({ tag }) => handleSearchTag(tag)}
                     isOpen={modalIcon?.open}
                     icon={modalIcon.icon}
                     color={icons.colorDefault}
