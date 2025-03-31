@@ -1,5 +1,6 @@
 import { cx } from "cva";
 import { getContrastColor } from "./utils";
+import { ComponentProps } from "react";
 
 type SearchIconsProps = {
     icons: {
@@ -55,7 +56,7 @@ export const SearchIcons = ({
                     ])}
                     style={{
                         backgroundColor: icons.colorDefault,
-                        color: getContrastColor(icons.colorDefault),
+                        color: getContrastColor(icons.colorDefault,'#000000','#ffffff'),
                     }}
                 >
                     <input
@@ -106,24 +107,65 @@ export const SearchIcons = ({
                     />
                 </div>
                 <div className="flex items-center justify-center gap-2">
-                    <button
-                        className={cx([
-                            "aspect-square w-5",
-                            "bg-primary rounded-full",
-                            "cursor-pointer",
-                        ])}
-                        onClick={() => handleChangeColors("#003d5b")}
+                    <ButtonSwitchColor
+                        className="bg-primary"
+                        onSwitchColor={() => handleChangeColors("#003d5b")}
                     />
-                    <button
-                        className={cx([
-                            "aspect-square w-5",
-                            "bg-secondary rounded-full",
-                            "cursor-pointer",
-                        ])}
-                        onClick={() => handleChangeColors("#007380")}
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#007380")}
+                        className="bg-secondary"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#ffffff")}
+                        className="bg-white"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#25E2CC")}
+                        className="bg-st-100"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#CC3262")}
+                        className="bg-pink"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#ff8400")}
+                        className="bg-orange-100"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#fbca18")}
+                        className="bg-yellow-100"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#F2F2F2")}
+                        className="bg-gray-10"
+                    />
+                    <ButtonSwitchColor
+                        onSwitchColor={() => handleChangeColors("#2a2b2c")}
+                        className="bg-gray-100"
                     />
                 </div>
             </div>
         </div>
     );
 };
+
+type ButtonSwitchColorProps = {
+    onSwitchColor: () => void;
+} & ComponentProps<"button">;
+
+const ButtonSwitchColor = ({
+    onSwitchColor,
+    className,
+    ...props
+}: ButtonSwitchColorProps) => (
+    <button
+        className={cx([
+            "aspect-square w-5",
+            "rounded-full shadow-md",
+            "cursor-pointer",
+            className,
+        ])}
+        onClick={onSwitchColor}
+        {...props}
+    />
+);
