@@ -4,6 +4,7 @@ import { cx } from "cva";
 import { ReactNode, useMemo, useRef, useState } from "react";
 import { ModalDownload } from "./modalDownload";
 import { SearchIcons } from "./SearchIcons";
+import { getContrastColor } from "./utils";
 
 type ModalIcon = {
     icon?: ReactNode;
@@ -78,7 +79,7 @@ export const Icons = () => {
             }, 100);
         }
     };
-
+    console.log(getContrastColor(icons.colorDefault, "#000000", "#ffffff"));
     return (
         <div className="space-y-5 relative mb-5" id="content-icons">
             <SearchIcons
@@ -99,7 +100,7 @@ export const Icons = () => {
                                 <h6 className="capitalize font-semibold text-secondary">
                                     {title}
                                 </h6>
-                                <ul className="flex  items-center justify-between flex-wrap w-full">
+                                <ul className="flex  items-center justify-between flex-wrap w-full gap-y-1">
                                     {components.map(({ item, name, tags }) => (
                                         <li
                                             key={name}
@@ -111,7 +112,20 @@ export const Icons = () => {
                                                     "w-full aspect-square p-2",
                                                     "rounded-md cursor-pointer",
                                                     "ease-in duration-200",
-                                                    "hover:bg-st-10",
+                                                    {
+                                                        "bg-white hover:bg-st-10":
+                                                            getContrastColor(
+                                                                icons.colorDefault,
+                                                                "#000000",
+                                                                "#ffffff"
+                                                            ) === "#ffffff",
+                                                        "hover:bg-secondary bg-primary":
+                                                            getContrastColor(
+                                                                icons.colorDefault,
+                                                                "#000000",
+                                                                "#ffffff"
+                                                            ) === "#000000",
+                                                    },
                                                 ])}
                                                 onClick={() =>
                                                     handleClickIcon({
@@ -131,7 +145,25 @@ export const Icons = () => {
                                                 >
                                                     {item}
                                                 </Slot>
-                                                <p className="text-xs font-medium text-center">
+                                                <p
+                                                    className={cx([
+                                                        "text-xs font-medium text-center",
+                                                        {
+                                                            "text-black ":
+                                                                getContrastColor(
+                                                                    icons.colorDefault,
+                                                                    "#000000",
+                                                                    "#ffffff"
+                                                                ) === "#ffffff",
+                                                            " text-white":
+                                                                getContrastColor(
+                                                                    icons.colorDefault,
+                                                                    "#000000",
+                                                                    "#ffffff"
+                                                                ) === "#000000",
+                                                        },
+                                                    ])}
+                                                >
                                                     {name}
                                                 </p>
                                             </button>
