@@ -1,10 +1,10 @@
-import { Switch } from "./Switch";
+import { Switch } from "../packages/switch/src";
 
 function App() {
   return (
     <>
       <h1>Concentrix</h1>
-      <Switch id={"Teste"} />
+      <Switch />
     </>
   );
 }
