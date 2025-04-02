@@ -95,12 +95,12 @@ export const Icons = () => {
                         return (
                             <div
                                 key={title + index}
-                                className="flex flex-col items-center space-y-5 "
+                                className="flex flex-col items-center space-y-5 pb-1"
                             >
                                 <h6 className="capitalize font-semibold text-secondary">
                                     {title}
                                 </h6>
-                                <ul className="flex  items-center justify-between flex-wrap w-full gap-y-1">
+                                <ul className="flex  items-center justify-between flex-wrap w-full gap-y-1 lg:gap-x-1 lg:justify-center">
                                     {components.map(({ item, name, tags }) => (
                                         <li
                                             key={name}
