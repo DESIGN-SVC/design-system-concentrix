@@ -14,7 +14,7 @@ const switchClass = {
         "inset-0 peer-checked:bg-st-100",
         "transition-colors duration-200",
         "peer-disabled:border-gray-40 peer-disabled:bg-gray-20 peer-disabled:cursor-not-allowed",
-        'peer-checked:peer-disabled:bg-[#D7F0F4]'
+        'peer-checked:peer-disabled:bg-st-20'
     ]),
     switchButton: cx([
         "absolute left-0 top-0 w-6 h-6 bg-primary rounded-full",
