@@ -1,16 +1,14 @@
-import { Button } from "../packages/button/src";
-import { Gear } from "../packages/icons/src";
+import { Checkbox } from "../packages/checkbox/src";
+
 
 function App() {
     return (
         <>
             <h1>Concentrix</h1>
-            <Button.Root appearance='primary' size='large'>
-                <Button.Icon>
-                    <Gear />
-                </Button.Icon>
-                <Button.Text>Label</Button.Text>
-            </Button.Root>
+            <Checkbox.Root>
+                <Checkbox.Input id="default"/>
+                <Checkbox.Label htmlFor="default">Default</Checkbox.Label>
+            </Checkbox.Root>
         </>
     );
 }
